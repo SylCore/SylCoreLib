@@ -1,0 +1,310 @@
+{
+	// Place your snippets for lua here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+//------------------------------------------------------------------------------------------------------------------//
+//												AIO Functions
+//------------------------------------------------------------------------------------------------------------------//
+	"AIO: Receive Function": {
+		"prefix": "AIO: Receive Function",
+		"body": [
+			"-- Basic setup for receiving a call from AIO, works for both Server <-> Client",
+			"function Handlers.${1:FunctionName}(player)",
+			"\t-- Do your code here when receiving call...",
+			"end"
+		],
+		"description": "Creates the code for receiving a function call. Works both server <-> client"
+	},
+
+	"AIO: Server → Client Call": {
+		"prefix": "AIO: Server → Client Call",
+		"body": [
+			"-- Basic setup for sending a call from server -> client.",
+			"-- Remember, if you need to send more data, add it to the end.",
+			" AIO.Handle(player, \"${1:HandlerName}\", \"${2:FunctionName}\");",
+		],
+		"description": "Creates the code for sending a call via AIO from server -> client"
+	},
+
+	"AIO: Client → Server Call": {
+		"prefix": "AIO: Client → Server Call",
+		"body": [
+			"-- Basic setup for sending a call from client -> server.",
+			"-- Remember, if you need to send more data, add it to the end.",
+			" AIO.Handle(\"${1:HandlerName}\", \"${2:FunctionName}\");",
+		],
+		"description": "Creates the code for sending a call via AIO from client -> server"
+	},
+
+	"AIO: Server Setup": {
+		"prefix": "AIO: Server Setup",
+		"body": [
+			"-- Get AIO or require it.",
+			"local AIO = AIO or require(\"AIO\")",
+			"",
+			"-- [IMPORTANT] Handler name must match between server and client.",
+			"local Handlers = AIO.AddHandlers(\"${1:HandleName}\", {});"
+		],
+		"description": "Creates the setup on server for AIO"
+	},
+
+	"AIO: Client Setup": {
+		"prefix": "AIO: Client Setup",
+		"body": [
+			"-- Get AIO or require it.",
+			"local AIO = AIO or require(\"AIO\")",
+			"",
+			"if AIO.AddAddon() then",
+			"\treturn;",
+			"end",
+			"",
+			"-- [IMPORTANT] Handler name must match between server and client.",
+			"local Handlers = AIO.AddHandlers(\"${1:HandleName}\", {});"
+		],
+		"description": "Creates the setup on client for AIO"
+	},
+
+	
+	"AIO: Debugging Setup Client": {
+		"prefix": "AIO: Debug Client",
+		"body": [
+			"-- Get AIO or require it.",
+			"local AIO = AIO or require(\"AIO\")",
+			"",
+			"if AIO.AddAddon() then",
+			"\treturn;",
+			"end",
+			"",
+			"-- Client-side handler table",
+			"local Handlers = AIO.AddHandlers(\"AIOTest\", {});",
+			"",
+			"-- Receive response from server",
+			"function Handlers.PongFromServer(message)",
+			"\tDEFAULT_CHAT_FRAME:AddMessage(\"Server said: \" .. (message or \"nil\"))",
+			"end",
+			"",
+			"SLASH_AIOPING1 = \"/aioping\"",
+			"SlashCmdList[\"AIOPING\"] = function()",
+			"\tAIO.Handle(\"AIOTest\", \"PingFromClient\", \"Hello from client!\")",
+			"end"
+			
+		],
+		"description": "Creates a simple ping pong debugging setup for the client"
+	},
+
+	"AIO: Debugging Setup Server": {
+		"prefix": "AIO: Debug Server",
+		"body": [
+			"-- Get AIO or require it.",
+			"local AIO = AIO or require(\"AIO\")",
+			"",
+			"-- Server-side handler table",
+			"local Handlers = AIO.AddHandlers(\"AIOTest\", {});",
+			"",
+			"-- Server receives ping from client",
+			"function Handlers.PingFromClient(player, message)",
+			"\tprint(\"[AIOTest] Received from client: \" .. (message or \"nil\"))",
+			"\t",
+			"\t-- Send response to client",
+			"\tAIO.Handle(player, \"AIOTest\", \"PongFromServer\", \"Hello back from server!\")",
+			"end"
+		],
+		"description": "Creates a simple ping pong debugging setup for the server, which sends a call to the client"
+	},
+
+//------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------//
+//												Frame Functions
+//------------------------------------------------------------------------------------------------------------------//
+
+	"Create A New Frame": {
+		"prefix": "Basic Frame",
+		"body": [
+			"local ${1:frame} = CreateFrame(\"Frame\", \"${1:Frame}\", UIParent, \"UIPanelDialogTemplate\")",
+			"${1:frame}:SetSize(${2:300}, ${3:400});",
+			"${1:frame}:SetPoint(\"CENTER\");"
+		],
+		"description": "Creates a basic frame"
+	},
+
+	"Full Frame": {
+        "prefix": "Advanced Frame",
+        "body": [
+            "local frame = CreateFrame(\"Frame\", \"${1:FrameName}\", UIParent, \"UIPanelDialogTemplate\")",
+            "frame:SetSize(${2:200}, ${3:300});",
+            "frame:SetPoint(\"CENTER\");",
+			"frame:RegisterForDrag(\"LeftButton\");",
+			"frame:SetMovable(true);",
+			"frame:EnableMouse(true);",
+			"",
+			"frame:SetScript(\"OnMouseDown\", function(self, button)",
+			"\tif button == \"LeftButton\" and not self.isMoving then",
+			"\t\tself:StartMoving();",
+			"\t\tself.isMoving = true;",
+			"\tend",
+			"end)",
+			"",
+			"frame:SetScript(\"OnMouseUp\", function(self, button)",
+			"\tif button == \"LeftButton\" and self.isMoving then",
+			"\t\tself:StopMovingOrSizing();",
+			"\t\tself.isMoving = false;",
+			"\tend",
+			"end)",
+			"",
+			"frame:SetScript(\"OnHide\", function(self, button)",
+			"\tif (self.isMoving) then",
+			"\t\tself:StopMovingOrSizing();",
+			"\t\tself.isMoving = false;",
+			"\tend",
+			"end)",
+			"",
+			"frame = ParagonSystem.UI.Frames.MainFrame:CreateFontString(nil, \"OVERLAY\", \"GameFontNormal\")",
+			"frame:SetPoint(\"CENTER\", frame, \"TOP\", 0, -15);",
+			"frame:SetText(\"Window Name\");",
+			"frame:Hide();"
+        ],
+        "description": "Creates a full frame with header text + dragging support"
+    },
+//------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------//
+//												Button Functions
+//------------------------------------------------------------------------------------------------------------------//
+
+	"Create Button": {
+		"prefix": "Basic Button",
+		"body": [
+			"local ${1:button} = CreateFrame(\"Button\", \"${1:button}\", ${2:UIParent}, \"UIPanelButtonTemplate\")",
+			"${1:frame}:SetSize(300, 400);",
+			"${1:frame}:SetPoint(\"CENTER\", ${2:UIParent}, \"CENTER\", 0, 0);"
+		],
+		"description": "Test WoW Frame"
+	},
+
+	"Create Static Button With Texture": {
+        "prefix": "Basic Button With Texture",
+        "body": [
+            "local ${1:button} = CreateFrame(\"Button\", \"${2:buttonName}\", UIParent, \"UIPanelButtonTemplate\")",
+            "${1:button}:SetSize(32, 32);",
+            "${1:button}:SetPoint(\"LEFT\", UIParent, \"TOPLEFT\", 0, -35);",
+			"${1:button}:RegisterForDrag(\"LeftButton\");",
+			"${1:button}:SetMovable(true);",
+			"${1:button}:EnableMouse(true);",
+			"${1:button}.texture = ${1:button}:CreateTexture();",
+			"${1:button}.texture:SetAllPoints(${1:button});",
+			"${1:button}.texture:SetTexture(\"interface/icons/achievement_reputation_argentchampion\");",
+			"",
+			"${1:button}:SetScript(\"OnClick\", function(self, button)",
+			"",
+			"end)",
+        ],
+        "description": "Creates a button with texture + Click script"
+    },
+
+	"Create Floating Button": {
+        "prefix": "Floating Button",
+        "body": [
+            "local ${1:button} = CreateFrame(\"Button\", \"${2:buttonName}\", UIParent, \"UIPanelButtonTemplate\")",
+            "${1:button}:SetSize(32, 32);",
+            "${1:button}:SetPoint(\"TOP\", UIParent, \"TOPLEFT\", 235, -35);",
+			"${1:button}:RegisterForDrag(\"LeftButton\");",
+			"${1:button}:SetMovable(true);",
+			"${1:button}:EnableMouse(true);",
+			"${1:button}.texture = ${1:button}:CreateTexture();",
+			"${1:button}.texture:SetAllPoints(${1:button});",
+			"${1:button}.texture:SetTexture(\"interface/icons/achievement_reputation_argentchampion\");",
+			"",
+			"${1:button}:SetScript(\"OnEnter\", function(self, button)",
+			"\tGameTooltip:SetOwner(ParagonSystem.UI.Buttons.MenuButton, \"ANCHOR_RIGHT\");",
+			"\tGameTooltip:SetText(\"${3:ToolTipText HERE}\")",
+			"\tGameTooltip:Show()",
+			"end)",
+			"",
+			"${1:button}:SetScript(\"OnLeave\", function(self, button)",
+			"\tGameTooltip:SetOwner(ParagonSystem.UI.Buttons.MenuButton, \"ANCHOR_RIGHT\");",
+			"\tGameTooltip:SetText(\"${3:ToolTipText HERE}\")",
+			"\tGameTooltip:Hide()",
+			"end)",
+			"",
+			"${1:button}:SetScript(\"OnClick\", function(self, button)",
+			"",
+			"end)",
+
+			"${1:button}:SetScript(\"OnMouseDown\", function(self, button)",
+			"\tif button == \"LeftButton\" and not self.isMoving then",
+			"\t\tself:StartMoving();",
+			"\t\tself.isMoving = true;",
+			"\tend",
+			"end)",
+
+			"",
+			"${1:button}:SetScript(\"OnMouseUp\", function(self, button)",
+			"\tif button == \"LeftButton\" and self.isMoving then",
+			"\t\tself:StopMovingOrSizing();",
+			"\t\tself.isMoving = false;",
+			"\tend",
+			"end)",
+
+			"",
+			"${1:button}:SetScript(\"OnHide\", function(self)",
+			"\tif (self.isMoving) then",
+			"\t\tself:StopMovingOrSizing();",
+			"\t\tself.isMoving = false;",
+			"\tend",
+			"end)",
+        ],
+        "description": "Creates a full floating button + dragging support"
+    },
+//------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------//
+//												Texture Functions
+//------------------------------------------------------------------------------------------------------------------//
+
+	"Create Texture": {
+		"prefix": "texture",
+		"body": [
+			"local ${1:texture} = ${2:UIElement}:CreateTexture(\"TextureTest\")",
+			"${1:texture}:SetAllPoints(${2:UIElement});",
+			"${1:texture}:SetTexture(0.5, 1, 1, 0.5);",
+			"${2:UIElement}:SetNormalTexture(${1:texture})"
+		],
+		"description": "Creates texture"
+	},
+}

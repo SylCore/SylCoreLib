@@ -8,7 +8,7 @@
 ## 🔧 Features
 
 ✅ Server-side and client-side utility libraries    
-✅ Timer, fade, and UI animation utilities  
+✅ Timer, Fade, Helpers, and UI animation utilities  
 ✅ AIO handler snippets for fast server ↔ client comms  
 ✅ StateMachine system for NPCs, quests, or flow logic    
 ✅ VSCode IntelliSense support (Eluna global autocomplete!)
@@ -30,13 +30,13 @@
 | `Achievement`        | ✅      | Implemented         |
 | `Corpse`             | ✅      | Implemented         |
 | `Group`              | ✅      | Implemented         |
-| `Aura`               | ❌      | Not implemented yet |
+| `Aura`               | ✅      | Implemented 			|
 | `BattleGround`       | ❌      | Not implemented yet |
 | `ChatHandler`        | ❌      | Not implemented yet |
 | `Creature`           | ❌      | Not implemented yet |
 | `ElunaQuery`         | ❌      | Not implemented yet |
 | `GameObject`         | ❌      | Not implemented yet |
-| `GemPropertiesEntry` | ❌      | Not implemented yet |
+| `GemPropertiesEntry` | ✅      | Implemented 			|
 | `Global`             | 🚧      | In progess          |
 | `Guild`              | ❌      | Not implemented yet |
 | `Item`               | 🚧      | In progess          |
@@ -44,14 +44,14 @@
 | `Map`                | ❌      | Not implemented yet |
 | `Object`             | 🚧      | In progess          |
 | `Player`             | 🚧      | In progess          |
-| `Quest`              | ❌      | Not implemented yet |
+| `Quest`              | ✅      | Implemented 			|
 | `Roll`               | ❌      | Not implemented yet |
 | `Spell`              | ❌      | Not implemented yet |
 | `SpellEntry`         | ❌      | Not implemented yet |
 | `SpellInfo`          | ❌      | Not implemented yet |
 | `Ticket`             | ❌      | Not implemented yet |
 | `Unit`               | 🚧      | In progess          |
-| `Vehicle`            | ❌      | Not implemented yet |
+| `Vehicle`            | ✅      | Implemented			|
 | `WorldObject`        | 🚧      | In progess          |
 | `WorldPacket`        | 🚧      | In progess          |
 </details>
@@ -64,6 +64,7 @@
 | Enum                | Status | Notes                                 |
 |---------------------|--------|----------------------------------------|
 | `GroupType`         | ✅     | Used in group:GetType()                |
+| `QuestFlags`        | ✅     | Used in quest:GetFlags()               |
 | `GroupMemberFlags`  | ✅     | Bitflag for group roles                |
 | `ItemSlot`          | ❌     | Player equipment slot indexing         |
 | `ChatMsgType`       | ❌     | Partial: say, yell, whisper supported  |
@@ -76,6 +77,8 @@
 ---
 
 ## 🛠️ Installation
+
+**(NOTE: Video will be released in the next few days, I will make SURE to link to it here, since it will go over the whole installing process!)**
 
 ### 1. Clone or Download
 ```bash
@@ -101,7 +104,7 @@ Inside `SylCoreLib`, you should see a file called snippets.json, open it and cop
 **NOTE: You must install the extension called **Lua** by **sumneko**.**
 [Extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
 
-Place the `SylCore-Eluna-IntelliSense` folder somewhere on your PC.
+Place the `SC-Eluna-IntelliSense` folder somewhere on your PC, or keep it in the repo folder if you cloned to a secure place.
 I would suggest putting it in your Documents folder, but it doesn't matter where you place it; we want to ensure it's not in a location where we might accidentally delete it.
 
 Open **Visual Studio Code**, next go to the top left of **Visual Studio Code**, hover your mouse over "**File**", and go down until you see "**Preferences**", hover your mouse over it and then click on "**Settings**"
@@ -110,12 +113,12 @@ Now go up to the top-right, you should see an icon of a document, click on it, a
 
 You will need to add a few things here for the IntelliSense to work. Below are the things you would need to add.
 
-NOTE: Where you see the path, you will need to replace that to point to the correct location of the ElunaAPI.d.lua file.
-This file is located inside `SylCore-Eluna-IntelliSense` folder.
+**NOTE: Where you see the path, you will need to replace that to point to the correct location of the ElunaAPI.d.lua file.**
+This file is located inside `SC-Eluna-IntelliSense` folder.
 
 ```plaintext
     "Lua.workspace.library": [
-        "G:\\Absolut\\Path\\To\\Your\\SylCore-Eluna-IntelliSense\\File\\Typings\\SylCore-ElunaAPI.d.lua"
+        "G:\\SylCore\\SylCoreLib\\SC-Eluna-IntelliSense"
     ],
     "Lua.diagnostics.libraryFiles": "Enable",
     "Lua.completion.callSnippet": "Replace",
