@@ -15,6 +15,66 @@
 
 ---
 
+## 📦 Implementation Status
+
+✅ = Complete.   
+🚧 = In Progress.   
+❌ = Not Implemented.   
+
+### 📚 Eluna Classes
+<details>
+    <summary>Click to expand class list</summary>
+    
+| Class                | Status | Notes               |
+| -------------------- | ------ | ------------------- |
+| `Achievement`        | ✅      | Implemented         |
+| `Corpse`             | ✅      | Implemented         |
+| `Group`              | ✅      | Implemented         |
+| `Aura`               | ❌      | Not implemented yet |
+| `BattleGround`       | ❌      | Not implemented yet |
+| `ChatHandler`        | ❌      | Not implemented yet |
+| `Creature`           | ❌      | Not implemented yet |
+| `ElunaQuery`         | ❌      | Not implemented yet |
+| `GameObject`         | ❌      | Not implemented yet |
+| `GemPropertiesEntry` | ❌      | Not implemented yet |
+| `Global`             | 🚧      | In progess          |
+| `Guild`              | ❌      | Not implemented yet |
+| `Item`               | 🚧      | In progess          |
+| `ItemTemplate`       | ❌      | Not implemented yet |
+| `Map`                | ❌      | Not implemented yet |
+| `Object`             | 🚧      | In progess          |
+| `Player`             | 🚧      | In progess          |
+| `Quest`              | ❌      | Not implemented yet |
+| `Roll`               | ❌      | Not implemented yet |
+| `Spell`              | ❌      | Not implemented yet |
+| `SpellEntry`         | ❌      | Not implemented yet |
+| `SpellInfo`          | ❌      | Not implemented yet |
+| `Ticket`             | ❌      | Not implemented yet |
+| `Unit`               | 🚧      | In progess          |
+| `Vehicle`            | ❌      | Not implemented yet |
+| `WorldObject`        | 🚧      | In progess          |
+| `WorldPacket`        | 🚧      | In progess          |
+</details>
+
+### 🎯 Enum Definitions
+
+<details>
+<summary>Click to expand enum list</summary>
+
+| Enum                | Status | Notes                                 |
+|---------------------|--------|----------------------------------------|
+| `GroupType`         | ✅     | Used in group:GetType()                |
+| `GroupMemberFlags`  | ✅     | Bitflag for group roles                |
+| `ItemSlot`          | ❌     | Player equipment slot indexing         |
+| `ChatMsgType`       | ❌     | Partial: say, yell, whisper supported  |
+| `SpellSchools`      | ❌     | Not implemented yet                    |
+| `TeamId`            | ❌     | Not yet started                        |
+
+</details>
+
+
+---
+
 ## 🛠️ Installation
 
 ### 1. Clone or Download
