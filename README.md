@@ -32,20 +32,20 @@
 | `Group`              | ✅      | Implemented         |
 | `Aura`               | ✅      | Implemented 			|
 | `BattleGround`       | ❌      | Not implemented yet |
-| `ChatHandler`        | ❌      | Not implemented yet |
+| `ChatHandler`        | ✅      | Implemented			|
 | `Creature`           | ❌      | Not implemented yet |
 | `ElunaQuery`         | ❌      | Not implemented yet |
-| `GameObject`         | ❌      | Not implemented yet |
+| `GameObject`         | ✅      | Implemented		    |
 | `GemPropertiesEntry` | ✅      | Implemented 			|
 | `Global`             | 🚧      | In progess          |
 | `Guild`              | ❌      | Not implemented yet |
 | `Item`               | 🚧      | In progess          |
 | `ItemTemplate`       | ❌      | Not implemented yet |
-| `Map`                | ❌      | Not implemented yet |
+| `Map`                | ✅      | Implemented		 	|
 | `Object`             | 🚧      | In progess          |
 | `Player`             | 🚧      | In progess          |
 | `Quest`              | ✅      | Implemented 			|
-| `Roll`               | ❌      | Not implemented yet |
+| `Roll`               | ✅      | Implemented		 	|
 | `Spell`              | ❌      | Not implemented yet |
 | `SpellEntry`         | ❌      | Not implemented yet |
 | `SpellInfo`          | ❌      | Not implemented yet |
@@ -69,7 +69,12 @@
 | `ItemSlot`          | ❌     | Player equipment slot indexing         |
 | `ChatMsgType`       | ❌     | Partial: say, yell, whisper supported  |
 | `SpellSchools`      | ❌     | Not implemented yet                    |
-| `TeamId`            | ❌     | Not yet started                        |
+| `TeamId`            | ✅     | Used in map:GetPlayers()               |
+| `WeatherType`       | ✅		| Used in map:SetWeather()          	|
+| `RollMask`       	  | ✅		| Used in roll:GetRollVoteMask()        |
+| `RollVote`	      | ✅		| Used in roll:GetPlayerVote()          |
+| `GOState`	      	  | ✅		| Used in gameobject:GetGoState()       |
+| `LootState`	      | ✅		| Used in gameobject:GetLootState())    |
 
 </details>
 

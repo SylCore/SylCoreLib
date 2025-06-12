@@ -75,7 +75,7 @@ GroupType = {
     LFG_RESTRICTED = 4,
     LFG = 8,
 }
-
+--------------------------------------------
 
 
 
@@ -100,6 +100,16 @@ RemoveMethod = {
     GROUP_REMOVEMETHOD_LEAVE    = 2,
     GROUP_REMOVEMETHOD_KICK_LFG = 3,
 };
+--------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 ---@alias GroupMemberFlagsEnum
@@ -117,6 +127,193 @@ GroupMemberFlags = {
     MEMBER_FLAG_MAINTANK        = 0x02,
     MEMBER_FLAG_MAINASSIST      = 0x04,
 };
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---@alias TeamIdEnum
+---| 0 # TEAM_ALLIANCE
+---| 1 # TEAM_HORDE
+---| 2 # TEAM_NEUTRAL
+
+---@class TeamId
+---@field TEAM_ALLIANCE number
+---@field TEAM_HORDE number
+---@field TEAM_NEUTRAL number
+
+TeamId = {
+    TEAM_ALLIANCE = 0,
+    TEAM_HORDE = 1,
+    TEAM_NEUTRAL = 2
+};
+--------------------------------------------
+
+
+
+
+
+
+---@alias RollVoteEnum
+---| 0 # PASS
+---| 1 # NEED
+---| 2 # GREED
+---| 3 # DISENCHANT
+---| 4 # NOT_EMITED_YET
+---| 5 # NOT_VALID
+
+---@class RollVote
+---@field PASS number
+---@field NEED number
+---@field GREED number
+---@field DISENCHANT number
+---@field NOT_EMITED_YET number
+---@field NOT_VALID number
+
+RollVote = {
+    PASS              = 0,
+    NEED              = 1,
+    GREED             = 2,
+    DISENCHANT        = 3,
+    NOT_EMITED_YET    = 4,
+    NOT_VALID         = 5
+};
+--------------------------------------------
+
+
+
+
+
+---@alias RollMaskEnum
+--- | 0x01 # ROLL_FLAG_TYPE_PASS        
+--- | 0x02 # ROLL_FLAG_TYPE_NEED        
+--- | 0x04 # ROLL_FLAG_TYPE_GREED       
+--- | 0x08 # ROLL_FLAG_TYPE_DISENCHANT  
+--- | 0x07 # ROLL_ALL_TYPE_NO_DISENCHANT
+--- | 0x0F # ROLL_ALL_TYPE_MASK
+
+---@class RollMask
+---@field ROLL_FLAG_TYPE_PASS number
+---@field ROLL_FLAG_TYPE_NEED number
+---@field ROLL_FLAG_TYPE_GREED number
+---@field ROLL_FLAG_TYPE_DISENCHANT number
+---@field ROLL_ALL_TYPE_NO_DISENCHANT number
+---@field ROLL_ALL_TYPE_MASK number
+
+RollMask = {
+    ROLL_FLAG_TYPE_PASS                 = 0x01,
+    ROLL_FLAG_TYPE_NEED                 = 0x02,
+    ROLL_FLAG_TYPE_GREED                = 0x04,
+    ROLL_FLAG_TYPE_DISENCHANT           = 0x08,
+    ROLL_ALL_TYPE_NO_DISENCHANT         = 0x07,
+    ROLL_ALL_TYPE_MASK                  = 0x0F
+};
+
+--------------------------------------------
+
+
+
+---@alias GOStateEnum
+--- | 0 # GO_STATE_ACTIVE        
+--- | 1 # GO_STATE_READY        
+--- | 2 # GO_STATE_ACTIVE_ALTERNATIVE       
+
+---@class GOState
+---@field GO_STATE_ACTIVE number
+---@field GO_STATE_READY number
+---@field GO_STATE_ACTIVE_ALTERNATIVE number
+
+GOState = {
+    GO_STATE_ACTIVE             = 0,
+    GO_STATE_READY              = 1,
+    GO_STATE_ACTIVE_ALTERNATIVE = 2
+};
+--------------------------------------------
+
+
+
+
+
+---@alias LootStateEnum
+--- | 0 # GO_NOT_READY        
+--- | 1 # GO_READY        
+--- | 2 # GO_ACTIVATED       
+--- | 3 # GO_JUST_DEACTIVATED       
+
+---@class LootState
+---@field GO_NOT_READY number
+---@field GO_READY string
+---@field GO_ACTIVATED string
+---@field GO_JUST_DEACTIVATED string
+
+LootState = {
+    GO_NOT_READY = 0,
+    GO_READY = "GO_READY",
+    GO_ACTIVATED = "GO_ACTIVATED",
+    GO_JUST_DEACTIVATED  = "GO_JUST_DEACTIVATED"
+};
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+---@alias WeatherTypeEnum
+---| 0 # WEATHER_TYPE_FINE
+---| 1 # WEATHER_TYPE_RAIN
+---| 2 # WEATHER_TYPE_SNOW
+---| 3 # WEATHER_TYPE_STORM
+---| 86 # WEATHER_TYPE_THUNDERS
+---| 90 # WEATHER_TYPE_BLACKRAIN
+
+---@class WeatherType
+---@field WEATHER_TYPE_FINE number
+---@field WEATHER_TYPE_RAIN number
+---@field WEATHER_TYPE_SNOW number
+---@field WEATHER_TYPE_STORM number
+---@field WEATHER_TYPE_THUNDERS number
+---@field WEATHER_TYPE_BLACKRAIN number
+
+WeatherType = {
+    WEATHER_TYPE_FINE       = 0,
+    WEATHER_TYPE_RAIN       = 1,
+    WEATHER_TYPE_SNOW       = 2,
+    WEATHER_TYPE_STORM      = 3,
+    WEATHER_TYPE_THUNDERS   = 86,
+    WEATHER_TYPE_BLACKRAIN  = 90
+};
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -139,6 +336,20 @@ CorpseType = {
     CORPSE_RESURRECTABLE_PVE = 1,
     CORPSE_RESURRECTABLE_PVP = 2
 };
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -176,6 +387,7 @@ LocaleConstant = {
     LOCALE_esMX = 7,
     LOCALE_ruRU = 8
 };
+--------------------------------------------
 
 
 
@@ -261,3 +473,17 @@ QuestFlags = {
     QUEST_FLAGS_OBJ_TEXT                = 0x00040000,
     QUEST_FLAGS_AUTO_ACCEPT             = 0x00080000,
 };
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
