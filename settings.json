@@ -1,0 +1,12 @@
+{
+	// Please just copy the content below and put inside your own Lua settings.
+	// These will ALWAYS be up-to-date for each release!
+	
+	"Lua.workspace.library": [
+        "G:\\SylCore\\SylCoreLib\\SC-Eluna-IntelliSense",						// This is the path to Intellisense, so most likely, inside the Github repo you cloned.
+        "G:\\SylCore\\Build\\bin\\RelWithDebInfo\\lua_scripts\\SylCoreLib"		// Path to your "lua_scripts/SylCoreLib" folder inside your SylCore build.
+    ],
+	"Lua.completion.autoRequire": false,	  									// Optional: Set to true if you want it to auto require certain files.
+	"Lua.diagnostics.libraryFiles": "Enable", 									// Optional: Suppress "undefined global" warnings
+	"Lua.completion.callSnippet": "Replace"   									// Optional: Set to "Both", if you want to see all snippets with both the full auto complete.
+}

@@ -51,55 +51,45 @@
     
 ]]--
 
-local Controller = {}
 
--- All our "modules" or rather, call it scripts that would be loaded.
-Controller.ClientTimer = dofile("lua_scripts/SylCoreLib/General/ClientTimer.lua")
-Controller.ServerTimer = dofile("lua_scripts/SylCoreLib/General/ServerTimer.lua")
-Controller.StateMachine = dofile("lua_scripts/SylCoreLib/General/StateMachine.lua")
-Controller.UI_Utils = dofile("lua_scripts/SylCoreLib/General/UI_Utils.lua")
-Controller.AIO_Utils = dofile("lua_scripts/SylCoreLib/General/AIO_Utils.lua")
+---@meta
 
----@type ElunaNamespace
-Controller.Eluna = dofile("lua_scripts/SylCoreLib/Eluna.lua")
+--- Eluna Server Event IDs
+---@class ServerEvents
+---@field SERVER_EVENT_ON_NETWORK_START          integer
+---@field SERVER_EVENT_ON_NETWORK_STOP           integer
+---@field SERVER_EVENT_ON_SOCKET_OPEN            integer
+---@field SERVER_EVENT_ON_SOCKET_CLOSE           integer
+---@field SERVER_EVENT_ON_PACKET_RECEIVE         integer
+---@field SERVER_EVENT_ON_PACKET_RECEIVE_UNKNOWN integer
+---@field SERVER_EVENT_ON_PACKET_SEND            integer
+---@field WORLD_EVENT_ON_OPEN_STATE_CHANGE       integer
+---@field WORLD_EVENT_ON_CONFIG_LOAD             integer
+---@field WORLD_EVENT_ON_SHUTDOWN_INIT           integer
+---@field WORLD_EVENT_ON_SHUTDOWN_CANCEL         integer
+---@field WORLD_EVENT_ON_UPDATE                  integer
+---@field WORLD_EVENT_ON_STARTUP                 integer
+---@field WORLD_EVENT_ON_SHUTDOWN                integer
+---@field ELUNA_EVENT_ON_LUA_STATE_CLOSE         integer
+---@field MAP_EVENT_ON_CREATE                    integer
+---@field MAP_EVENT_ON_DESTROY                   integer
+---@field MAP_EVENT_ON_GRID_LOAD                 integer
+---@field MAP_EVENT_ON_GRID_UNLOAD               integer
+---@field MAP_EVENT_ON_PLAYER_ENTER              integer
+---@field MAP_EVENT_ON_PLAYER_LEAVE              integer
+---@field MAP_EVENT_ON_UPDATE                    integer
+---@field TRIGGER_EVENT_ON_TRIGGER               integer
+---@field WEATHER_EVENT_ON_CHANGE                integer
+---@field AUCTION_EVENT_ON_ADD                   integer
+---@field AUCTION_EVENT_ON_REMOVE                integer
+---@field AUCTION_EVENT_ON_SUCCESSFUL            integer
+---@field AUCTION_EVENT_ON_EXPIRE                integer
+---@field ADDON_EVENT_ON_MESSAGE                 integer
+---@field WORLD_EVENT_ON_DELETE_CREATURE         integer
+---@field WORLD_EVENT_ON_DELETE_GAMEOBJECT       integer
+---@field ELUNA_EVENT_ON_LUA_STATE_OPEN          integer
+---@field GAME_EVENT_START                       integer
+---@field GAME_EVENT_STOP                        integer
 
--- Just some functions.
-Controller.Version = "1.0.0"
-Controller.Debug = false;
-
--- Custom logger.
-function Controller:Log(prefix, msg)
-    if self.Debug then
-        print("[" .. prefix .. "] " .. msg)
-    end
-end
-
--- Init function
-function Controller:Init()
-
-    if string.reverse(string.upper(GetCoreName())) ~= "EROCLYS" then
-            PrintError("[SylCoreLib] Running in compatibility mode for non-SylCore core.");
-            PrintError("[SylCoreLib] Note: Some features may not work on other cores, consider switching to SylCore");
-            PrintError("[SylCoreLib] Learn more at https://sylcore.org");
-    end
-    
-    print();
-    print();
-    PrintInfo("[SylCoreLib] Initializing framework v" .. self.Version)
-	print("----------------------------------")
-    -- Optional: run init logic on individual modules
-    if self.ClientTimer.Init then self.ClientTimer:Init() end
-    if self.ServerTimer.Init then self.ServerTimer:Init() end
-    if self.StateMachine.Init then self.StateMachine:Init() end
-    if self.UI_Utils.Init then self.UI_Utils:Init() end
-    if self.AIO_Utils.Init then self.AIO_Utils:Init() end
-    if self.Eluna.Init then self.Eluna:Init() end
-	print("----------------------------------")
-    PrintInfo("[SylCoreLib] Initialization complete.")
-    PrintError("[SylCoreLib] Framework v1.0 (c) SylCore. Do not redistribute without license.");
-    print();
-    print();
-end
-
--- Return the controller table.
-return Controller
+---@class ElunaNamespace
+---@field ServerEvents ServerEvents

@@ -51,55 +51,58 @@
     
 ]]--
 
-local Controller = {}
 
--- All our "modules" or rather, call it scripts that would be loaded.
-Controller.ClientTimer = dofile("lua_scripts/SylCoreLib/General/ClientTimer.lua")
-Controller.ServerTimer = dofile("lua_scripts/SylCoreLib/General/ServerTimer.lua")
-Controller.StateMachine = dofile("lua_scripts/SylCoreLib/General/StateMachine.lua")
-Controller.UI_Utils = dofile("lua_scripts/SylCoreLib/General/UI_Utils.lua")
-Controller.AIO_Utils = dofile("lua_scripts/SylCoreLib/General/AIO_Utils.lua")
 
----@type ElunaNamespace
-Controller.Eluna = dofile("lua_scripts/SylCoreLib/Eluna.lua")
 
--- Just some functions.
-Controller.Version = "1.0.0"
-Controller.Debug = false;
 
--- Custom logger.
-function Controller:Log(prefix, msg)
-    if self.Debug then
-        print("[" .. prefix .. "] " .. msg)
+
+--------------------------------------------------------------------------------------------------------------------
+--												WoW Addon Utilites                                                --
+--------------------------------------------------------------------------------------------------------------------
+
+-- File: AIO_Utils.lua
+AIO_Utils = {}
+
+AIO_Utils.Payload = {}
+
+
+-- Converts our table data, this is needed, because when you send things via AIO, it needs to be converted to bytes.
+-- Below is a little showcase of how it all works:
+
+-- Lua Table   --->   Serialize to string   --->   Send over AIO   --->   Receive on client   --->   loadstring() to get original table
+--                      (SerializeTable)                (AIO)                    (Lua)                      (Deserialize)
+
+function AIO_Utils.Payload.SerializeTable(tbl)
+    local function serialize(val)
+        if type(val) == "table" then
+            local s = "{"
+            for k, v in pairs(val) do
+                local key = "[" .. serialize(k) .. "]"
+                s = s .. key .. "=" .. serialize(v) .. ","
+            end
+            return s .. "}"
+        elseif type(val) == "string" then
+            return string.format("%q", val)
+        else
+            return tostring(val)
+        end
     end
+
+    return "return " .. serialize(tbl)
 end
 
--- Init function
-function Controller:Init()
 
-    if string.reverse(string.upper(GetCoreName())) ~= "EROCLYS" then
-            PrintError("[SylCoreLib] Running in compatibility mode for non-SylCore core.");
-            PrintError("[SylCoreLib] Note: Some features may not work on other cores, consider switching to SylCore");
-            PrintError("[SylCoreLib] Learn more at https://sylcore.org");
-    end
-    
-    print();
-    print();
-    PrintInfo("[SylCoreLib] Initializing framework v" .. self.Version)
-	print("----------------------------------")
-    -- Optional: run init logic on individual modules
-    if self.ClientTimer.Init then self.ClientTimer:Init() end
-    if self.ServerTimer.Init then self.ServerTimer:Init() end
-    if self.StateMachine.Init then self.StateMachine:Init() end
-    if self.UI_Utils.Init then self.UI_Utils:Init() end
-    if self.AIO_Utils.Init then self.AIO_Utils:Init() end
-    if self.Eluna.Init then self.Eluna:Init() end
-	print("----------------------------------")
-    PrintInfo("[SylCoreLib] Initialization complete.")
-    PrintError("[SylCoreLib] Framework v1.0 (c) SylCore. Do not redistribute without license.");
-    print();
-    print();
+function AIO_Utils:Init()
+    print("[SylCoreLib.AIO_Utils] AIO_Utils ready");
 end
 
--- Return the controller table.
-return Controller
+
+-- Measure the size, if its over 30.000 (30KB), split into more strings to send it to the player.
+function AIO_Utils.Payload.MeasureTableSize(tbl)
+    local serialized = AIO_Utils.Payload.SerializeTable(tbl)
+    print("[AIO Debug] Serialized table size: " .. #serialized .. " bytes")
+    return serialized
+end
+
+
+return AIO_Utils

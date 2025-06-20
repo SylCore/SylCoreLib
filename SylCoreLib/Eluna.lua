@@ -62,16 +62,10 @@
 --------------------------------------------------------------------------------------------------------------------
 
 Eluna = {
-    enabled = true;
-    enableDebug = true;
+    enabled = true,
+    enableDebug = true,
 
-
-
-}
-
-Eluna.Events = {
-
-    BGEvents = {
+        BGEvents = {
             BG_EVENT_ON_START           = 1,  -- (event, bg, bgId, instanceId)
             BG_EVENT_ON_END             = 2,  -- (event, bg, bgId, instanceId, winner)
             BG_EVENT_ON_CREATE          = 3,  -- (event, bg, bgId, instanceId)
@@ -332,8 +326,9 @@ Eluna.Events = {
 
             GAME_EVENT_START                       = 34, -- (event, gameeventid)
             GAME_EVENT_STOP                        = 35, -- (event, gameeventid)
-        },
-};
+    },
+
+}
 
 Eluna.UpdateFields = {}
 

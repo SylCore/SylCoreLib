@@ -51,55 +51,17 @@
     
 ]]--
 
-local Controller = {}
 
--- All our "modules" or rather, call it scripts that would be loaded.
-Controller.ClientTimer = dofile("lua_scripts/SylCoreLib/General/ClientTimer.lua")
-Controller.ServerTimer = dofile("lua_scripts/SylCoreLib/General/ServerTimer.lua")
-Controller.StateMachine = dofile("lua_scripts/SylCoreLib/General/StateMachine.lua")
-Controller.UI_Utils = dofile("lua_scripts/SylCoreLib/General/UI_Utils.lua")
-Controller.AIO_Utils = dofile("lua_scripts/SylCoreLib/General/AIO_Utils.lua")
+---@meta
 
----@type ElunaNamespace
-Controller.Eluna = dofile("lua_scripts/SylCoreLib/Eluna.lua")
+--- Eluna Vehicle Event IDs
+---@class VehicleEvents
+---@field VEHICLE_EVENT_ON_INSTALL           integer
+---@field VEHICLE_EVENT_ON_UNINSTALL         integer
+---@field VEHICLE_EVENT_ON_INSTALL_ACCESSORY integer
+---@field VEHICLE_EVENT_ON_ADD_PASSENGER     integer
+---@field VEHICLE_EVENT_ON_REMOVE_PASSENGER  integer
 
--- Just some functions.
-Controller.Version = "1.0.0"
-Controller.Debug = false;
 
--- Custom logger.
-function Controller:Log(prefix, msg)
-    if self.Debug then
-        print("[" .. prefix .. "] " .. msg)
-    end
-end
-
--- Init function
-function Controller:Init()
-
-    if string.reverse(string.upper(GetCoreName())) ~= "EROCLYS" then
-            PrintError("[SylCoreLib] Running in compatibility mode for non-SylCore core.");
-            PrintError("[SylCoreLib] Note: Some features may not work on other cores, consider switching to SylCore");
-            PrintError("[SylCoreLib] Learn more at https://sylcore.org");
-    end
-    
-    print();
-    print();
-    PrintInfo("[SylCoreLib] Initializing framework v" .. self.Version)
-	print("----------------------------------")
-    -- Optional: run init logic on individual modules
-    if self.ClientTimer.Init then self.ClientTimer:Init() end
-    if self.ServerTimer.Init then self.ServerTimer:Init() end
-    if self.StateMachine.Init then self.StateMachine:Init() end
-    if self.UI_Utils.Init then self.UI_Utils:Init() end
-    if self.AIO_Utils.Init then self.AIO_Utils:Init() end
-    if self.Eluna.Init then self.Eluna:Init() end
-	print("----------------------------------")
-    PrintInfo("[SylCoreLib] Initialization complete.")
-    PrintError("[SylCoreLib] Framework v1.0 (c) SylCore. Do not redistribute without license.");
-    print();
-    print();
-end
-
--- Return the controller table.
-return Controller
+---@class ElunaNamespace
+---@field VehicleEvents VehicleEvents
