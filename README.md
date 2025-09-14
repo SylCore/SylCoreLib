@@ -87,7 +87,7 @@
 
 ### 1. Clone or Download
 ```bash
-git clone https://github.com/SylCore/SylCore-WoTLK.git
+git clone https://github.com/SylCore/SylCoreLib.git
 ```
 
 
