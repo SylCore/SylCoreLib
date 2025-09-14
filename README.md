@@ -83,7 +83,7 @@
 
 ## 🛠️ Installation
 
-**(NOTE: Video will be released in the next few days, I will make SURE to link to it here, since it will go over the whole installing process!)**
+[Video guide on installing](https://youtu.be/Ve06njKIlk0)
 
 ### 1. Clone or Download
 ```bash
